@@ -1,0 +1,72 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.RecipesAdmin.ViewRecipeModel
+@{
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+
+<h1>@Model.Recipe?.Name</h1>
+
+<form method="post" asp-page-handler="Favorite">
+    <input type="hidden" asp-for="Recipe.Id" value="@Model.Recipe.Id" />
+    <button type="submit" class="btn btn-primary">Add to Favorites</button>
+</form>
+
+<div>
+    <p>creator: @Model.Recipe.UserId.Name</p>
+    <p>Preparation Time: @Model.Recipe.PreparetionTime minutes</p>
+    <p>Category: @Model.Recipe.CategoryId.Name</p>
+    <p>Difficulty: @Model.Recipe.DifficultyId.Name</p>
+    <p>Preparation Method: @Model.Recipe.PreparetionMethod</p>
+
+    <h2>Ingredients</h2>
+    <ul>
+        @foreach (var ingredient in Model.Recipe.RecipeIngredients)
+        {
+            <li>@ingredient.IngredientId.IngredientName - @ingredient.Quantity @ingredient.MeasureId.Name</li>
+        }
+    </ul>
+</div>
+
+<h3>Comments and Ratings</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>@post.Comment</td>
+                <td>@post.Rating</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Add a Comment</h3>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Post.Comment"></label>
+        <textarea asp-for="Post.Comment" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Post.UserId.Id"></label>
+        <select asp-for="Post.Rating" class="form-control" style="color: black;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <input type="hidden" asp-for="Post.UserId.Id" value="@Model.User.Id" />
+    <input type="hidden" asp-for="Post.RecipeId.Id" value="@Model.Recipe.Id" />
+
+    <button type="submit" class="btn btn-primary" style="width:150px;">Add Comment</button>
+</form>

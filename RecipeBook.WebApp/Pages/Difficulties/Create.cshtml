@@ -1,0 +1,50 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Difficulties.CreateModel
+@{
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class=" row pb-2">
+            <h2 class="text-primary pl-3">Create Difficulty</h2>
+            <hr />
+        </div>
+
+        <div class=" mb-3">
+            <label asp-for="@Model.Difficulty.Name"></label>
+            <input asp-for="@Model.Difficulty.Name" class="form-control" />
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
+
+
+    </div>
+    <div>
+    <h2>All Difficulties </h2>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var difficulty in Model.difficulties)
+        {
+            <tr>
+                <th scope="row">@difficulty.Id</th>
+                <td>@difficulty.Name</td>
+
+
+                <td>
+                    <a asp-area="" asp-page="/Difficulties/Update" asp-route-id="@difficulty.Id"> Update </a>
+                    <a asp-area="" asp-page="/Difficulties/Delete" asp-route-id="@difficulty.Id"> Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</form>

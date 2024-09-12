@@ -1,0 +1,57 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.UserWelcomeModel
+@{
+ }
+<div class="text-center">
+    <h1 class="display-4">Jeane</h1>
+    <h1 class="display-4">The Joy of Cooking</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+</div>
+<header>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">Jeane The Joy of Cooking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    @*@<li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                    </li>*@
+                    </li>
+                    <a asp-page="/Categories/Create" class="btn btn-primary "> Categories </a>
+                    </li>
+                    </li>
+                    <a asp-page="/Measure/Create" class="btn btn-primary "> Measure </a>
+                    </li>
+                    </li>
+                    <a asp-page="/Ingredientss/Create" class="btn btn-primary "> Ingredient </a>
+                    </li>
+
+                    <li class=" nav-item">
+                        <a asp-page="/Recipes/Index" class="btn btn-primary "> Recipes </a>
+                    </li>
+                    <a asp-page="/Difficulties/Create" class="btn btn-primary "> Difficulty </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Users/RetrieveAll">User</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a asp-page="Favorites/RetrieveAll" class="btn btn-primary text-end"> Favorite </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+       

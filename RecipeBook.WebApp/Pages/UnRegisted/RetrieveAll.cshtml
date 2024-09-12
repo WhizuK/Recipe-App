@@ -1,0 +1,30 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.UnRegisted.RetrieveAllModel
+@{
+
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model.Recipes)
+        {
+            if(recipe.Approved == true)
+            {
+                    <tr>
+                        <th scope="row">@recipe.Id</th>
+                        <td>@recipe.Name</td>
+                        <td>
+                            <a asp-page="/UnRegisted/ViewRecipe" asp-route-id="@recipe.Id">View</a>
+                        </td>
+                    </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.RetrieveAllModel
+@{
+}
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+                <tr>
+                    <th scope="row">@user.Id</th>
+                    <td>@user.Name</td>
+                    <td>
+                      
+                        <a asp-page="/UserAdmin/Update" asp-route-id="@user.Id">Update</a>/
+
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>

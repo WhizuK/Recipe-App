@@ -1,0 +1,24 @@
+﻿
+@page
+@model UpdateUserModel
+@{
+    ViewData["Title"] = "Update Profile";
+}
+
+<h1>Update Your Profile</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="User.Name"></label>
+        <input asp-for="User.Name" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="User.Email"></label>
+        <input asp-for="User.Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width:150px;">Update Profile</button>
+</form>
+
+<p><a asp-page="/ViewUser">Back to Profile</a></p>

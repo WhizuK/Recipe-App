@@ -1,0 +1,50 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.RecipesAdmin.PendingRecipes
+@{
+
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+<form method="post" asp-page-handler="UpdateApproval">
+    @if (Model.User != null)
+    {
+            <div>User Logged In Name: @Model.User.Email</div>
+    }
+
+    <div>
+        <p>creator: @Model.Recipe.UserId.Name</p>
+        <p>Title: @Model.Recipe.Name</p>
+        <p>Preparation Time: @Model.Recipe.PreparetionTime minutes</p>
+         <p>Category: @Model.Recipe.CategoryId.Name</p>
+        <p>Difficulty: @Model.Recipe.DifficultyId.Name</p>
+        <p>Preparation Method: @Model.Recipe.PreparetionMethod</p>
+
+        <h2>Ingredients</h2>
+        <ul>
+            @foreach (var ingredient in Model.Recipe.RecipeIngredients)
+            {
+                    <li>@ingredient.IngredientId.IngredientName - @ingredient.Quantity @ingredient.MeasureId.Name</li>
+            }
+        </ul>
+    </div>
+            <input type="hidden" asp-for="@Model.Recipe.UserId.Id" />
+            <input type="hidden" asp-for="@Model.Recipe.Name" />
+            <input type="hidden" asp-for="@Model.Recipe.PreparetionTime minutes" />
+            <input type="hidden" asp-for="@Model.Recipe.CategoryId.Id" />
+            <input type="hidden" asp-for="@Model.Recipe.DifficultyId.Id" />
+            <input type="hidden" asp-for="@Model.Recipe.PreparetionMethod" />
+
+
+    <h3>Update Approval</h3>
+
+        <div class="mb-3">
+            <label asp-for="@Model.Recipe.Approved"></label>
+        <select asp-for="@Model.Recipe.Approved" class="form-control" style="color: black;">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+
+        <input type="hidden" asp-for="@Model.Recipe.Id" />
+
+        <button type="submit" class="btn btn-primary">Update Approval</button>
+</form>

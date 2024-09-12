@@ -1,0 +1,19 @@
+﻿
+@page
+@model ViewUserModel
+@{
+    ViewData["Title"] = "View User";
+}
+
+<h1>Your Profile</h1>
+
+<dl>
+    <dt>Name:</dt>
+    <dd>@Model.User?.Name</dd>
+
+    <dt>Email:</dt>
+    <dd>@Model.User?.Email</dd>
+</dl>
+
+<p><a asp-page="/Users/UpdateUser" class="btn btn-primary">Update Profile</a></p>
+

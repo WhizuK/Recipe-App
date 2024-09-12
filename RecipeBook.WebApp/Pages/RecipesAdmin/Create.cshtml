@@ -1,0 +1,89 @@
+﻿@page
+@model Livro_de_Receita.WebApp.Pages.RecipesAdmin.CreateModel
+@{
+    ViewData["Title"] = "Create Recipe";
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+<h1>Create a New Recipe</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Recipe.Name" class="control-label">Recipe Name</label>
+        <input type="text" id="Recipe.Name" name="Recipe.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+    <label for="Recipe.DifficultyId.Id" class="control-label">Difficulty</label>
+        <select id="Recipe.DifficultyId.Id" name="Recipe.DifficultyId.Id" class="form-control" style="color: black;">
+        <option value="">Select a Difficulty</option>
+        @foreach (var difficulty in Model.Difficulties)
+        {
+            <option value="@difficulty.Id">@difficulty.Name</option>
+        }
+    </select>
+</div>
+    <div class="form-group">
+        <label asp-for="Recipe.PreparetionTime" class="control-label">Preparation Time (minutes)</label>
+        <input asp-for="Recipe.PreparetionTime" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Recipe.PreparetionMethod" class="control-label">Preparation Method </label>
+        <input asp-for="Recipe.PreparetionMethod" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Recipe.CategoryId.Id" class="control-label">Category</label>
+        <select id="Recipe.CategoryId.Id" name="Recipe.CategoryId.Id" class="form-control" style="color: black;">
+            <option value="">Select a Category</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <div id="ingredients-container">
+        <h3>Ingredients</h3>
+        <div class="ingredient-entry">
+            <select class="form-control" name="IngredientIds" style="color: black;">
+                <option value="">Select an Ingredient</option>
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    <option value="@ingredient.Id">@ingredient.IngredientName</option>
+                }
+            </select>
+            <input type="number" name="Quantities" class="form-control" placeholder="Quantity" />
+            <select class="form-control" name="MeasureIds" style="color: black;">
+                <option value="">Select a Measure</option>
+                @foreach (var measure in Model.Measures)
+                {
+                    <option value="@measure.Id">@measure.Name</option>
+                }
+            </select>
+            <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
+        </div>
+    </div>
+
+    <button type="button" id="add-ingredient" class="btn btn-secondary">Add Ingredient</button>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create Recipe</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#add-ingredient").on("click", function () {
+                var ingredientEntry = $(".ingredient-entry:first").clone();
+                ingredientEntry.find("select,input").val("");
+                $("#ingredients-container").append(ingredientEntry);
+            });
+
+            $(document).on("click", ".remove-ingredient", function () {
+                $(this).closest(".ingredient-entry").remove();
+            });
+        });
+    </script>
+}

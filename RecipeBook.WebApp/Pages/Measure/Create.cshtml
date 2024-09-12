@@ -1,0 +1,50 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Measure.CreateModel
+@{
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class=" row pb-2">
+            <h2 class="text-primary pl-3">Create Measure</h2>
+            <hr />
+        </div>
+
+        <div class=" mb-3">
+            <label asp-for="@Model.Measures.Name"></label>
+            <input asp-for="@Model.Measures.Name" class="form-control" />
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" style="width:150px;">Create</button>
+
+
+    </div>
+
+            <h2>All Measures </h2>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var measure in Model.Measure)
+                {
+                    <tr>
+                        <th scope="row">@measure.Id</th>
+                        <td>@measure.Name</td>
+
+
+                        <td>
+                            <a asp-area="" asp-page="/Measure/Update" asp-route-id="@measure.Id"> Update </a> 
+                            <a asp-area="" asp-page="/Measure/Delete" asp-route-id="@measure.Id"> Delete </a>
+                        </td>
+                    </tr>
+                }
+    </tbody>
+</table>
+</form>

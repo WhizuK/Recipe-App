@@ -1,0 +1,29 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Favorites.RetrieveAllModel
+@{
+    ViewData["Title"] = "Favorite";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var favorite in Model.Favorites)
+        {
+
+            <tr>
+                <th scope="row">@favorite.Id</th>
+                <td>@favorite.RecipeId.Name</td>
+
+
+                <td>
+                    <a asp-area="" asp-page="/Favorites/Delete" asp-route-id="@favorite.Id"> Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

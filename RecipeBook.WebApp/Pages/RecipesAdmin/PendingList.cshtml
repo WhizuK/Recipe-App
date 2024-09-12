@@ -1,0 +1,31 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.RecipesAdmin.PendingListModel
+@{
+
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model.Recipes)
+        {
+            if(recipe.Approved == false){
+
+                    <tr>
+                        <th scope="row">@recipe.Id</th>
+                        <td>@recipe.Name</td>
+                        <td>
+                            <a asp-page="/RecipesAdmin/PendingRecipes" asp-route-id="@recipe.Id">Pending Income</a>/
+
+                        </td>
+                    </tr>
+            }
+        }
+    </tbody>
+</table>

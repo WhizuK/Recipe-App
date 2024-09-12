@@ -1,0 +1,28 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.UnRegisted.RetrieveModel
+@{
+
+}
+@if (Model.User != null)
+{
+        <div>User Logged In Name: @Model.User.Email</div>
+}
+
+<br />
+<br />
+@Model.Recipe.Id
+<br/>
+@Model.Recipe.Name
+<br />
+@Model.Recipe.UserId.Name
+<br />
+
+@foreach (var ingredient in Model.Recipe.RecipeIngredients)
+{
+    @ingredient.Quantity @ingredient.MeasureId.Name <a>  </a>   @ingredient.IngredientId.Id
+        <br />
+}
+
+@Model.Recipe.PreparetionMethod
+<br />
+...

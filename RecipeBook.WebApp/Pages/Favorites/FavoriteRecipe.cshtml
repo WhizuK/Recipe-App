@@ -1,0 +1,45 @@
+﻿@page
+@using Livro_de_Receita.service.ServiceInterfaces;
+@model RecipeBook.WebApp.Pages.Favorites.FavoriteRecipeModel
+@{
+    @inject IRecipeService _recipeService
+}
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
+<h3>Favorites</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Recipe</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var favorite in Model.Favorites)
+        {
+            <tr>
+                <td>
+                    @{
+  
+                        var recipe = _recipeService.Retrieve(favorite.RecipeId.Id);
+
+                        if (recipe != null)
+                        {
+                            <span>@recipe.Name</span>
+                        }
+                        else
+                        {
+                            <span>Recipe not found</span>
+                        }
+                    }
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" asp-for-id="@favorite.Id" value="@favorite.Id" />
+                        <a asp-area="" asp-page="/RecipesAdmin/ViewRecipe" asp-route-id="@recipe.Id"> View </a>/
+                        <a asp-area="" asp-page="/Favorites/Delete" asp-route-id="@favorite.Id"> Delete </a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

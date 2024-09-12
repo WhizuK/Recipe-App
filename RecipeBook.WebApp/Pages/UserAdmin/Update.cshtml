@@ -1,0 +1,49 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.UpdateModel
+@{
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+          <div class=" row pb-2">
+              <h2 class="text-primary pl-3">Update User</h2>
+              <hr  />
+         </div>
+
+        <div class=" mb-3">
+            <label asp-for="@Model.User.Id"></label>
+            <input asp-for="@Model.User.Id" class="form-control" />
+        </div>
+        <div class=" mb-3">
+            <label asp-for="@Model.User.Name"></label>
+            <input asp-for="@Model.User.Name" class="form-control" />
+        </div>
+
+            <div class=" mb-3">
+            <label asp-for="@Model.User.Email"></label>
+            <input asp-for="@Model.User.Email" class="form-control" />
+            </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.User.Blocked"></label>
+            <select asp-for="@Model.User.Blocked" class="form-control" style="color: black;">
+                <option value="true">Blocked</option>
+                <option value="false">Not Blocked</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.User.Admin"></label>
+            <select asp-for="@Model.User.Admin" class="form-control" style="color: black;">
+                <option value="true">Admin</option>
+                <option value="false">Não-Admin</option>
+            </select>
+        </div>
+
+            <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+
+
+     </div>
+
+</form>
+<button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
